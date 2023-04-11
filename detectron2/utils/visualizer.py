@@ -535,7 +535,7 @@ class Visualizer:
 
     draw_panoptic_seg_predictions = draw_panoptic_seg  # backward compatibility
 
-    def draw_dataset_dict(self, dic):
+    def draw_dataset_dict(self, dic,only_mask=False):
         """
         Draw annotations/segmentations in Detectron2 Dataset format.
 
@@ -578,9 +578,15 @@ class Visualizer:
                 class_names=names,
                 is_crowd=[x.get("iscrowd", 0) for x in annos],
             )
-            self.overlay_instances(
+            if only_mask:
+                self.overlay_instances(
                 labels=None, boxes=None, masks=masks, keypoints=keypts, assigned_colors=colors
             )
+            else:
+                self.overlay_instances(
+                labels=labels, boxes=boxes, masks=masks, keypoints=keypts, assigned_colors=colors
+            )
+
 
         sem_seg = dic.get("sem_seg", None)
         if sem_seg is None and "sem_seg_file_name" in dic:
