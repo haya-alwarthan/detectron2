@@ -422,24 +422,24 @@ class Visualizer:
                 )
             )
             alpha = 0.3
-            if only_mask:
+        if only_mask:
+            self.overlay_instances(
+                masks=masks,
+                boxes=boxes,
+                labels=labels,
+                keypoints=keypoints,
+                assigned_colors=colors,
+                alpha=alpha,
+            )
+        else:
                 self.overlay_instances(
-                    masks=masks,
-                    boxes=boxes,
-                    labels=labels,
-                    keypoints=keypoints,
-                    assigned_colors=colors,
-                    alpha=alpha,
-                )
-            else:
-                 self.overlay_instances(
-                    masks=masks,
-                    boxes=None,
-                    labels=None,
-                    keypoints=keypoints,
-                    assigned_colors=colors,
-                    alpha=alpha,
-                ) 
+                masks=masks,
+                boxes=None,
+                labels=None,
+                keypoints=keypoints,
+                assigned_colors=colors,
+                alpha=alpha,
+            ) 
 
         return self.output
 
@@ -484,7 +484,7 @@ class Visualizer:
         Draw panoptic prediction annotations or results.
 
         Args:
-            panoptic_seg (Tensor): of shape (height, width) where the values are ids for each
+            panoptic_seg (Tensor): of shape (height, draw_instance_predictionswidth) where the values are ids for each
                 segment.
             segments_info (list[dict] or None): Describe each segment in `panoptic_seg`.
                 If it is a ``list[dict]``, each dict contains keys "id", "category_id".
