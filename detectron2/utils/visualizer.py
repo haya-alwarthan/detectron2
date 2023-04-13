@@ -425,8 +425,8 @@ class Visualizer:
 
         self.overlay_instances(
             masks=masks,
-            boxes=boxes,
-            labels=labels,
+            boxes=None,
+            labels=None,
             keypoints=keypoints,
             assigned_colors=colors,
             alpha=alpha,
