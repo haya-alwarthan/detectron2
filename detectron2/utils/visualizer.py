@@ -698,7 +698,7 @@ class Visualizer:
 
             if masks is not None:
                 for segment in masks[i].polygons:
-                    self.draw_polygon(segment.reshape(-1, 2), color, alpha=alpha)
+                    self.draw_polygon(segment.reshape(-1, 2),color, color, alpha=alpha)
 
             if labels is not None:
                 # first get a box
@@ -1142,7 +1142,7 @@ class Visualizer:
         polygon = mpl.patches.Polygon(
             segment,
             fill=True,
-            facecolor=mplc.to_rgb(color) + (alpha,),
+            facecolor=mplc.to_rgba(color,0.5),
             edgecolor=edge_color,
             linewidth=max(self._default_font_size // 15 * self.output.scale, 1),
         )
